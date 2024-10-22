@@ -14,7 +14,7 @@ let words = [];
 let wordIndex = 0;
 // the starting time
 let startTime = Date.now();
-localStorage.setItem('highScore', 0);
+localStorage.setItem('highScore', 100000);
 // page elements
 const quoteElement = document.getElementById('quote');
 const messageElement = document.getElementById('message');
@@ -62,6 +62,7 @@ typedValueElement.addEventListener('input', () => {
     if (typedValue === currentWord && wordIndex === words.length - 1) {
       // end of sentence
       // Display success
+      typedValueElement.value = '';
       const elapsedTime = new Date().getTime() - startTime;
       if (localStorage.getItem("highScore") > elapsedTime / 1000) {
         localStorage.setItem("highScore", elapsedTime / 1000)
