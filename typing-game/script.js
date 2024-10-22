@@ -14,6 +14,7 @@ let words = [];
 let wordIndex = 0;
 // the starting time
 let startTime = Date.now();
+localStorage.setItem('highScore', 0);
 // page elements
 const quoteElement = document.getElementById('quote');
 const messageElement = document.getElementById('message');
@@ -62,7 +63,10 @@ typedValueElement.addEventListener('input', () => {
       // end of sentence
       // Display success
       const elapsedTime = new Date().getTime() - startTime;
-      const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.`;
+      if (localStorage.getItem("highScore") > elapsedTime / 1000) {
+        localStorage.setItem("highScore", elapsedTime / 1000)
+      }
+      const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.\nHigh Score: ${localStorage.getItem("highScore")} seconds`;
       messageElement.innerText = message;
       // disable the typing
       typedValueElement.disabled = true;
