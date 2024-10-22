@@ -19,6 +19,7 @@ localStorage.setItem('highScore', 100000);
 const quoteElement = document.getElementById('quote');
 const messageElement = document.getElementById('message');
 const typedValueElement = document.getElementById('typed-value');
+const highScoreElement = document.getElementById('high-score');
 
 typedValueElement.disabled = true;
 
@@ -66,8 +67,9 @@ typedValueElement.addEventListener('input', () => {
       const elapsedTime = new Date().getTime() - startTime;
       if (localStorage.getItem("highScore") > elapsedTime / 1000) {
         localStorage.setItem("highScore", elapsedTime / 1000)
+        highScoreElement.innerText = `High Score: ${elapsedTime / 1000} seconds`;
       }
-      const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.\nHigh Score: ${localStorage.getItem("highScore")} seconds`;
+      const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.`;
       messageElement.innerText = message;
       // disable the typing
       typedValueElement.disabled = true;
